@@ -12,19 +12,23 @@ public class Bot : Animal {
 	void Start () {
         okPanel.SetActive(false);
         size = (int)Random.Range(1, 4);
-        HunterManager.instance.objs_mob.Add(this.gameObject);
+        Hunter.instance.objs_mob.Add(this.gameObject);
         player = GameObject.Find("Mouse");
 
         speed = transform.parent.GetComponent<botMove>().speed;
     }
 	
 	void Update () {
-        ScalingBot();
-        if (size < player.GetComponent<Animal>().size)
-            okPanel.SetActive(true);
-        else
-            okPanel.SetActive(false);
+        
+        if (player != null)
+        {
+            if (size < player.GetComponent<Animal>().size)
+                okPanel.SetActive(true);
+            else
+                okPanel.SetActive(false);
+        }
 
+        ScalingBot();
         LookAtTarget();
 	}
 
@@ -41,11 +45,11 @@ public class Bot : Animal {
         {
             if (collision.gameObject.name == "Mouse")
             {
-                HunterManager.instance.objs_mob.Remove(collision.gameObject);
+                Hunter.instance.objs_mob.Remove(collision.gameObject);
                 Destroy(collision.gameObject);
             } else
             {
-                HunterManager.instance.objs_mob.Remove(collision.gameObject);
+                Hunter.instance.objs_mob.Remove(collision.gameObject);
                 Destroy(collision.gameObject.transform.parent.gameObject);
                 MobSpawn.instance.spawnCount++;
             }

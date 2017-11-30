@@ -5,6 +5,6 @@ using UnityEngine;
 public class HunterTarget : MonoBehaviour {
 
 	void Update () {
-        transform.position = HunterManager.instance.HuntTarget().position;
+        transform.position = Hunter.instance.target.position;
     }
 }

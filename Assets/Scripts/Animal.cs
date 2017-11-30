@@ -5,12 +5,6 @@ using UnityEngine;
 public class Animal : MonoBehaviour {
     
     public int size;
-    Vector3 startScale;
-
-    private void Start()
-    {
-        startScale = transform.localScale;
-    }
 
     public void ScalingBot()
     {
@@ -20,5 +14,6 @@ public class Animal : MonoBehaviour {
     public void ScalingPlayer()
     {
         transform.localScale = new Vector3(size, size, size);
+        Camera.main.GetComponent<Camera>().orthographicSize = size * 3;
     }
 }

@@ -26,7 +26,7 @@ public class Player : Animal {
 
     private void Start()
     {
-        HunterManager.instance.objs_mob.Add(this.gameObject);
+        Hunter.instance.objs_mob.Add(this.gameObject);
     }
 
     private void Update()
@@ -115,7 +115,7 @@ public class Player : Animal {
     {
         if (collider.gameObject.tag == "Mob" && collider.gameObject.GetComponent<Animal>().size < size)
         {
-            HunterManager.instance.objs_mob.Remove(collider.gameObject);
+            Hunter.instance.objs_mob.Remove(collider.gameObject);
             Destroy(collider.gameObject.transform.parent.gameObject);
             MobSpawn.instance.spawnCount++;
 

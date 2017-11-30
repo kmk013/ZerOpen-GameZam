@@ -9,8 +9,6 @@ public class MobSpawn : MonoBehaviour {
 	public float spawnIntervalTime;
     public List<GameObject> botList = new List<GameObject>();
 
-	public GameObject bot;
-
 	void Awake() {
 		if (instance == null) {
 			instance = this;
