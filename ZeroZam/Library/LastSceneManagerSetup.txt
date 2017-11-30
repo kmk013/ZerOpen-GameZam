@@ -1,4 +1,0 @@
-sceneSetups:
-- path: "C:/Users/\uAE40\uBBFC\uADDC/Desktop/sfsdf/Assets/Scenes/GameScene.unity"
-  isLoaded: 1
-  isActive: 1
