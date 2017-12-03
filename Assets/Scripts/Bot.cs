@@ -56,7 +56,7 @@ public class Bot : Animal {
             {
                 Hunter.instance.objs_mob.Remove(collision.gameObject);
                 Destroy(collision.gameObject.transform.parent.gameObject);
-                MobSpawn.instance.spawnCount++;
+                MobSpawn.Instance.spawnCount++;
             }
         }
 

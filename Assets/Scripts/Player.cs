@@ -21,7 +21,6 @@ public class Player : Animal {
     private void Awake()
     {
         size = 2;
-        speed = 4;
     }
 
     private void Start()
@@ -82,7 +81,7 @@ public class Player : Animal {
         if (Input.GetKeyDown("3") && runImage.fillAmount == 1)
             Run();
         else if (runImage.fillAmount == 1)
-            speed = 4;
+            speed = 240;
 
         if (Input.GetMouseButtonDown(1))
             MinusSaturn();
@@ -139,17 +138,17 @@ public class Player : Animal {
         Camera.main.transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position, 5 * Time.deltaTime);
         Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
 
-        if (Camera.main.transform.position.x > ((87 / 2) - Camera.main.orthographicSize * 2))
-            Camera.main.transform.position = new Vector3(((87 / 2) - Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
+        if (Camera.main.transform.position.x > ((GameManager.Instance.mapSizeX / 2) - Camera.main.orthographicSize * 2))
+            Camera.main.transform.position = new Vector3(((GameManager.Instance.mapSizeX / 2) - Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
 
-        if (Camera.main.transform.position.x < ((-87 / 2) + Camera.main.orthographicSize * 2))
-            Camera.main.transform.position = new Vector3(((-87 / 2) + Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
+        if (Camera.main.transform.position.x < ((-GameManager.Instance.mapSizeX / 2) + Camera.main.orthographicSize * 2))
+            Camera.main.transform.position = new Vector3(((-GameManager.Instance.mapSizeX / 2) + Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
 
-        if (Camera.main.transform.position.y > ((80 / 2) - Camera.main.orthographicSize))
-            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((80 / 2) - Camera.main.orthographicSize), Camera.main.transform.position.z);
+        if (Camera.main.transform.position.y > ((GameManager.Instance.mapSizeY / 2) - Camera.main.orthographicSize))
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((GameManager.Instance.mapSizeY / 2) - Camera.main.orthographicSize), Camera.main.transform.position.z);
 
-        if (Camera.main.transform.position.y < ((-80 / 2) + Camera.main.orthographicSize))
-            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((-80 / 2) + Camera.main.orthographicSize), Camera.main.transform.position.z);
+        if (Camera.main.transform.position.y < ((-GameManager.Instance.mapSizeY / 2) + Camera.main.orthographicSize))
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((-GameManager.Instance.mapSizeY / 2) + Camera.main.orthographicSize), Camera.main.transform.position.z);
 
     }
 
@@ -159,7 +158,7 @@ public class Player : Animal {
         {
             Hunter.instance.objs_mob.Remove(collider.gameObject);
             Destroy(collider.gameObject.transform.parent.gameObject);
-            MobSpawn.instance.spawnCount++;
+            MobSpawn.Instance.spawnCount++;
 
             saturn += ((float)collider.gameObject.GetComponent<Animal>().size / (float)size) * 100;
         }

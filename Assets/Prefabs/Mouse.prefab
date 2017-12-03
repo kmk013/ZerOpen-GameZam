@@ -21,8 +21,6 @@ GameObject:
   - component: {fileID: 4780715054875778}
   - component: {fileID: 212589838230728776}
   - component: {fileID: 114954971942503398}
-  - component: {fileID: 114479353962131870}
-  - component: {fileID: 114135193962861766}
   - component: {fileID: 50659021808370436}
   - component: {fileID: 60148594908124060}
   m_Layer: 0
@@ -81,7 +79,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.61}
+    oldSize: {x: 25, y: 30.5}
     newSize: {x: 0.5, y: 0.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -89,46 +87,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.18615957, y: 0.11262807}
-      - {x: 0.10439763, y: 0.20781563}
-      - {x: -0.05042803, y: 0.2078111}
-      - {x: -0.10248388, y: 0.17341225}
-      - {x: -0.13126752, y: 0.14494887}
-      - {x: -0.1660307, y: 0.06859797}
-      - {x: -0.18120465, y: 0.029412173}
-      - {x: -0.21121635, y: -0.015793871}
-      - {x: -0.19962864, y: -0.09939185}
-      - {x: -0.1960307, y: -0.095}
-      - {x: -0.123597935, y: -0.15388598}
-      - {x: -0.048787724, y: -0.2738487}
-      - {x: 0.019818563, y: -0.30203128}
-      - {x: 0.091638826, y: -0.27261838}
-      - {x: 0.16721326, y: -0.1537954}
-      - {x: 0.24730074, y: -0.08079753}
-      - {x: 0.221209, y: 0.017818552}
---- !u!114 &114135193962861766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185005546663528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e18bfeff1fe13489f8af59a0a1d368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114479353962131870
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185005546663528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06919ee1b3dd7e44499237bd3d565e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
+    - - {x: 4.5, y: 15.25}
+      - {x: -9, y: 15.25}
+      - {x: -12.5, y: 9.75}
+      - {x: -12.5, y: 2.75}
+      - {x: -11, y: 3.25}
+      - {x: -10.5, y: 5.25}
+      - {x: -12, y: -0.25}
+      - {x: -12.5, y: -4.25}
+      - {x: -12.5, y: -4.75}
+      - {x: -6, y: -15.25}
+      - {x: 8, y: -15.25}
+      - {x: 12.5, y: -6.25}
+      - {x: 12.5, y: 5.75}
 --- !u!114 &114954971942503398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,11 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
-  saturnImage: {fileID: 0}
-  saturnText: {fileID: 0}
-  gasImage: {fileID: 0}
-  needleImage: {fileID: 0}
-  runImage: {fileID: 0}
   gas: {fileID: 1818940387883904, guid: bf246780104d99a44ba6aa383e2c40c3, type: 2}
   needle: {fileID: 1926790345507808, guid: d12b6f19136fe0549862d429ecb5184e, type: 2}
 --- !u!212 &212589838230728776

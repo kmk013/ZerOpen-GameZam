@@ -52,12 +52,12 @@ public class Hunter : MonoBehaviour
         if(collider.gameObject.name == "Mouse")
         {
             objs_mob.Remove(collider.gameObject);
-            MobSpawn.instance.spawnCount++;
+            MobSpawn.Instance.spawnCount++;
         } else if(collider.gameObject.tag == "Mob")
         {
             objs_mob.Remove(collider.gameObject);
             Destroy(collider.gameObject.transform.parent.gameObject);
-            MobSpawn.instance.spawnCount++;
+            MobSpawn.Instance.spawnCount++;
         }
     }
 

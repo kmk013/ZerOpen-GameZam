@@ -15,6 +15,6 @@ public class Animal : MonoBehaviour {
     public void ScalingPlayer()
     {
         transform.localScale = new Vector3(size, size, size);
-        Camera.main.GetComponent<Camera>().orthographicSize = size * 3;
+        Camera.main.GetComponent<Camera>().orthographicSize = size * 100;
     }
 }

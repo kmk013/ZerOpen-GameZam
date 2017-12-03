@@ -18,7 +18,7 @@ public class botMove : MonoBehaviour {
 	void Awake() {
 		SleepOn = false;
 		mobTargeting = false;
-		speed = Random.Range (2f, 4f);
+		speed = Random.Range (120f, 240f);
 	}
 
 	void Start() {
@@ -26,8 +26,8 @@ public class botMove : MonoBehaviour {
 	}
 
 	void TargetSetting() {
-		float TargetPosX = Random.Range (-(87 / 2 + 8), (87 / 2 - 8));
-		float TargetPosY = Random.Range (-(80 / 2 + 8), (80 / 2 - 8));
+		float TargetPosX = Random.Range (-(GameManager.Instance.mapSizeX / 2 + 250), (GameManager.Instance.mapSizeX / 2 - 250));
+		float TargetPosY = Random.Range (-(GameManager.Instance.mapSizeY / 2 + 250), (GameManager.Instance.mapSizeY / 2 - 250));
 		target = new Vector3 (TargetPosX, TargetPosY, 0);
 	}
 
