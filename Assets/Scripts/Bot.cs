@@ -9,7 +9,8 @@ public class Bot : Animal {
 
     public float speed;
     
-	void Start () {
+	void Start ()
+    {
         okPanel.SetActive(false);
         size = (int)Random.Range(1, 4);
         Hunter.instance.objs_mob.Add(this.gameObject);
@@ -18,8 +19,8 @@ public class Bot : Animal {
         speed = transform.parent.GetComponent<botMove>().speed;
     }
 	
-	void Update () {
-        
+	void Update ()
+    {
         if (player != null)
         {
             if (size < player.GetComponent<Animal>().size)
@@ -29,8 +30,12 @@ public class Bot : Animal {
         }
 
         ScalingBot();
-        LookAtTarget();
 	}
+
+    private void LateUpdate()
+    {
+        LookAtTarget();
+    }
 
     void LookAtTarget()
     {
@@ -58,13 +63,6 @@ public class Bot : Animal {
         if (collision.gameObject.tag == "Gas")
         {
             StartCoroutine(Gas());
-        }
-
-        if (collision.gameObject.tag == "Needle")
-        {
-            if(size > 1)
-                size--;
-            Destroy(collision.gameObject);
         }
     }
 

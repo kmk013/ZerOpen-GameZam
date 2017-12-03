@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4780715054875778}
   - component: {fileID: 212589838230728776}
-  - component: {fileID: 61900139728511184}
   - component: {fileID: 114954971942503398}
   - component: {fileID: 114479353962131870}
   - component: {fileID: 114135193962861766}
+  - component: {fileID: 50659021808370436}
+  - component: {fileID: 60148594908124060}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Mob
@@ -44,8 +45,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61900139728511184
-BoxCollider2D:
+--- !u!50 &50659021808370436
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185005546663528}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60148594908124060
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -66,9 +87,25 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.61}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.18615957, y: 0.11262807}
+      - {x: 0.10439763, y: 0.20781563}
+      - {x: -0.05042803, y: 0.2078111}
+      - {x: -0.10248388, y: 0.17341225}
+      - {x: -0.13126752, y: 0.14494887}
+      - {x: -0.1660307, y: 0.06859797}
+      - {x: -0.18120465, y: 0.029412173}
+      - {x: -0.21121635, y: -0.015793871}
+      - {x: -0.19962864, y: -0.09939185}
+      - {x: -0.1960307, y: -0.095}
+      - {x: -0.123597935, y: -0.15388598}
+      - {x: -0.048787724, y: -0.2738487}
+      - {x: 0.019818563, y: -0.30203128}
+      - {x: 0.091638826, y: -0.27261838}
+      - {x: 0.16721326, y: -0.1537954}
+      - {x: 0.24730074, y: -0.08079753}
+      - {x: 0.221209, y: 0.017818552}
 --- !u!114 &114135193962861766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,8 +146,8 @@ MonoBehaviour:
   gasImage: {fileID: 0}
   needleImage: {fileID: 0}
   runImage: {fileID: 0}
-  gas: {fileID: 0}
-  needle: {fileID: 0}
+  gas: {fileID: 1818940387883904, guid: bf246780104d99a44ba6aa383e2c40c3, type: 2}
+  needle: {fileID: 1926790345507808, guid: d12b6f19136fe0549862d429ecb5184e, type: 2}
 --- !u!212 &212589838230728776
 SpriteRenderer:
   m_ObjectHideFlags: 1

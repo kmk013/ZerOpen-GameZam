@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour {
     
+    [HideInInspector]
     public int size;
 
     public void ScalingBot()

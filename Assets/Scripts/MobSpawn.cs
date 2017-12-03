@@ -22,7 +22,7 @@ public class MobSpawn : MonoBehaviour {
 	}
 
 	void SpawnBot() {
-		Instantiate (botList[Random.Range(1,3)], new Vector3 (Random.Range((-CameraMove.instance.mapSizeX/2 + 8),(CameraMove.instance.mapSizeX/2 - 8)),Random.Range((-CameraMove.instance.mapSizeY/2 + 8),(CameraMove.instance.mapSizeY/2 - 8)),0),Quaternion.identity);
+		Instantiate (botList[Random.Range(1,3)], new Vector3 (Random.Range((-87/2 + 8),(87/2 - 8)),Random.Range((-80/2 + 8),(80/2 - 8)),0), Quaternion.identity);
 		spawnCount--;
 	}
 

@@ -26,8 +26,8 @@ public class botMove : MonoBehaviour {
 	}
 
 	void TargetSetting() {
-		float TargetPosX = Random.Range (-(CameraMove.instance.mapSizeX / 2 + 8), (CameraMove.instance.mapSizeX / 2 - 8));
-		float TargetPosY = Random.Range (-(CameraMove.instance.mapSizeY / 2 + 8), (CameraMove.instance.mapSizeY / 2 - 8));
+		float TargetPosX = Random.Range (-(87 / 2 + 8), (87 / 2 - 8));
+		float TargetPosY = Random.Range (-(80 / 2 + 8), (80 / 2 - 8));
 		target = new Vector3 (TargetPosX, TargetPosY, 0);
 	}
 
@@ -41,7 +41,7 @@ public class botMove : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D col) {
-		if(col.gameObject.tag == "Mob" && col.gameObject.GetComponent<Animal>().size < GetComponent<Animal>().size ) { // if(col.gameObject.tag == "Mob" && col.gameObject.GetComponent<Animal>().size < GetComponent<Animal>().size ) {
+		if(col.gameObject.tag == "Mob" && col.gameObject.GetComponent<Animal>().size < GetComponent<Animal>().size ) {
 			targetMob = col.gameObject;
 			mobTargeting = true;
 			target = col.gameObject.transform.position;

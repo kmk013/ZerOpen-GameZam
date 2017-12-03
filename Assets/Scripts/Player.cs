@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Player : Animal {
 
-    public Image saturnImage;
-    public Text saturnText;
+    private Image saturnImage;
+    private Text saturnText;
     private float saturn = 100;
 
-    public Image gasImage;
-    public Image needleImage;
-    public Image runImage;
+    private Image gasImage;
+    private Image needleImage;
+    private Image runImage;
     private float speed;
 
     public GameObject gas;
@@ -21,11 +21,17 @@ public class Player : Animal {
     private void Awake()
     {
         size = 2;
-        speed = GetComponent<PlayerMove>().speed;
+        speed = 4;
     }
 
     private void Start()
     {
+        saturnImage = GameObject.Find("SaturnBar").GetComponent<Image>();
+        saturnText = GameObject.Find("SaturnText").GetComponent<Text>();
+        gasImage = GameObject.Find("GasButton").GetComponent<Image>();
+        needleImage = GameObject.Find("NeedleButton").GetComponent<Image>();
+        runImage = GameObject.Find("RunButton").GetComponent<Image>();
+
         Hunter.instance.objs_mob.Add(this.gameObject);
     }
 
@@ -36,79 +42,115 @@ public class Player : Animal {
 
         if (saturn / 100 > 2)
             size = (int)saturn / 100;
+        
+        saturnText.text = "X" + ((int)saturn / 100).ToString();
+        saturnImage.fillAmount = saturn % 100 / 100;
 
+        PlayerMove();
         ScalingPlayer();
+        PlayerCommand();
+    }
 
-        saturnText.GetComponent<Text>().text = "X" + ((int)saturn / 100).ToString();
-        saturnImage.GetComponent<Image>().fillAmount = saturn % 100 / 100;
+    private void FixedUpdate()
+    {
+        saturn -= 0.15f;
 
-        saturn -= 2 * Time.deltaTime;
+        if (gasImage.fillAmount < 1)
+            gasImage.fillAmount += 0.005f;
 
-        if (Input.GetKeyDown("1") && gasImage.GetComponent<Image>().fillAmount == 1)
-        {
+        if (needleImage.fillAmount < 1)
+            needleImage.fillAmount += 0.005f;
+
+        if (runImage.fillAmount < 1)
+            runImage.fillAmount += 0.01f;
+    }
+
+    private void LateUpdate()
+    {
+        LookAtMouse();
+        CameraMove();
+    }
+
+    void PlayerCommand()
+    {
+        if (Input.GetKeyDown("1") && gasImage.fillAmount == 1)
             CreateGas();
-            gasImage.GetComponent<Image>().fillAmount = 0;
-            saturn -= saturn * 0.1f + 10;
-            GameObject.Find("GasSound").GetComponent<AudioSource>().Play();
-        }
 
-        if (Input.GetMouseButtonDown(0) && needleImage.GetComponent<Image>().fillAmount == 1)
-        {
+        if (Input.GetMouseButtonDown(0) && needleImage.fillAmount == 1)
             CreateNeedle();
-            needleImage.GetComponent<Image>().fillAmount = 0;
-            saturn -= 20;
-            GameObject.Find("NeedleSound").GetComponent<AudioSource>().Play();
-        }
 
-        if (Input.GetKeyDown("3") && runImage.GetComponent<Image>().fillAmount == 1)
-        {
+        if (Input.GetKeyDown("3") && runImage.fillAmount == 1)
             Run();
-            runImage.GetComponent<Image>().fillAmount = 0;
-            saturn -= saturn * 0.2f + 15;
-            GameObject.Find("RunSound").GetComponent<AudioSource>().Play();
-        }
-        else if (runImage.GetComponent<Image>().fillAmount == 1)
-        {
-            GetComponent<PlayerMove>().speed = speed;
-        }
+        else if (runImage.fillAmount == 1)
+            speed = 4;
 
         if (Input.GetMouseButtonDown(1))
-        {
             MinusSaturn();
-        }
-
-        if (gasImage.GetComponent<Image>().fillAmount < 1)
-        {
-            gasImage.GetComponent<Image>().fillAmount += 0.1f * Time.deltaTime;
-        }
-        if (needleImage.GetComponent<Image>().fillAmount < 1)
-        {
-            needleImage.GetComponent<Image>().fillAmount += 0.1f * Time.deltaTime;
-        }
-        if (runImage.GetComponent<Image>().fillAmount < 1)
-        {
-            runImage.GetComponent<Image>().fillAmount += 0.2f * Time.deltaTime;
-        }
     }
 
     void CreateGas()
     {
         Instantiate(gas, transform.position, Quaternion.identity);
+        gasImage.fillAmount = 0;
+        saturn -= saturn * 0.1f + 10;
+        GameObject.Find("GasSound").GetComponent<AudioSource>().Play();
     }
 
     void CreateNeedle()
     {
         Instantiate(needle, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        needleImage.fillAmount = 0;
+        saturn -= 20;
+        GameObject.Find("NeedleSound").GetComponent<AudioSource>().Play();
     }
 
     void Run()
     {
-        GetComponent<PlayerMove>().speed *= 1.5f;
+        speed *= 1.5f;
+        runImage.fillAmount = 0;
+        saturn -= saturn * 0.2f + 15;
+        GameObject.Find("RunSound").GetComponent<AudioSource>().Play();
     }
 
     void MinusSaturn()
     {
         saturn -= 5;
+    }
+
+    void LookAtMouse()
+    {
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    void PlayerMove()
+    {
+        float dx = Input.GetAxis("Horizontal");
+        float dy = Input.GetAxis("Vertical");
+
+        Vector3 dir = new Vector3(dx, dy, 0) * speed * Time.deltaTime;
+
+        transform.localPosition += dir;
+    }
+
+    void CameraMove()
+    {
+        Camera.main.transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position, 5 * Time.deltaTime);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
+
+        if (Camera.main.transform.position.x > ((87 / 2) - Camera.main.orthographicSize * 2))
+            Camera.main.transform.position = new Vector3(((87 / 2) - Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
+
+        if (Camera.main.transform.position.x < ((-87 / 2) + Camera.main.orthographicSize * 2))
+            Camera.main.transform.position = new Vector3(((-87 / 2) + Camera.main.orthographicSize * 2), Camera.main.transform.position.y, Camera.main.transform.position.z);
+
+        if (Camera.main.transform.position.y > ((80 / 2) - Camera.main.orthographicSize))
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((80 / 2) - Camera.main.orthographicSize), Camera.main.transform.position.z);
+
+        if (Camera.main.transform.position.y < ((-80 / 2) + Camera.main.orthographicSize))
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, ((-80 / 2) + Camera.main.orthographicSize), Camera.main.transform.position.z);
+
     }
 
     void OnCollisionEnter2D(Collision2D collider)
@@ -127,7 +169,7 @@ public class Player : Animal {
             SceneManager.LoadScene(2);
         }
 
-        if(collider.gameObject.name == "Eagle")
+        if(collider.gameObject.name == "Hunter")
         {
             SceneManager.LoadScene(2);
         }

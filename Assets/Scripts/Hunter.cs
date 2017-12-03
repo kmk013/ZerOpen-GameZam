@@ -28,7 +28,7 @@ public class Hunter : MonoBehaviour
         transform.localScale = new Vector3(2.5f * target.GetComponent<Animal>().size,
             2.5f * target.GetComponent<Animal>().size,
             2.5f * target.GetComponent<Animal>().size);
-
+        
         LookAtTarget();
     }
 

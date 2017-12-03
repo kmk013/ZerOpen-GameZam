@@ -13,8 +13,17 @@ public class Needle : MonoBehaviour {
         Destroy(this.gameObject, 1.5f);
 	}
 	
-	// Update is called once per frame
 	void Update () {
         transform.position += transform.up * -1 * Time.deltaTime * speed;
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Mob")
+        {
+            if(collision.gameObject.GetComponent<Animal>().size > 1)
+                collision.gameObject.GetComponent<Animal>().size--;
+        }
+        Destroy(this.gameObject);
+    }
 }
