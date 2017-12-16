@@ -4,33 +4,26 @@ using UnityEngine;
 
 public class Bot : Animal {
 
-    public GameObject okPanel;
-    public GameObject player;
+    public Vector3 target;
 
     public float speed;
     
 	void Start ()
     {
-        okPanel.SetActive(false);
-        size = (int)Random.Range(1, 4);
-        Hunter.instance.objs_mob.Add(this.gameObject);
-        player = GameObject.Find("Mouse");
+        size = (int)Random.Range(GameObject.Find("Mouse").GetComponent<Animal>().size - 1,
+            GameObject.Find("Mouse").GetComponent<Animal>().size + 2);
+        GameManager.Instance.obj_list.Add(this.gameObject);
 
-        speed = transform.parent.GetComponent<botMove>().speed;
+        speed = Random.Range(120f, 240f);
+
+        TargetSetting();
     }
 	
 	void Update ()
     {
-        if (player != null)
-        {
-            if (size < player.GetComponent<Animal>().size)
-                okPanel.SetActive(true);
-            else
-                okPanel.SetActive(false);
-        }
-
         ScalingBot();
-	}
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
 
     private void LateUpdate()
     {
@@ -39,9 +32,16 @@ public class Bot : Animal {
 
     void LookAtTarget()
     {
-        Vector3 dir = transform.parent.GetComponent<botMove>().target - Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 dir = target - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    void TargetSetting()
+    {
+        float TargetPosX = Random.Range(-(GameManager.Instance.mapSizeX / 2 + 250), (GameManager.Instance.mapSizeX / 2 - 250));
+        float TargetPosY = Random.Range(-(GameManager.Instance.mapSizeY / 2 + 250), (GameManager.Instance.mapSizeY / 2 - 250));
+        target = new Vector3(TargetPosX, TargetPosY, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,12 +50,12 @@ public class Bot : Animal {
         {
             if (collision.gameObject.name == "Mouse")
             {
-                Hunter.instance.objs_mob.Remove(collision.gameObject);
+                GameManager.Instance.obj_list.Remove(collision.gameObject);
                 Destroy(collision.gameObject);
             } else
             {
-                Hunter.instance.objs_mob.Remove(collision.gameObject);
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                GameManager.Instance.obj_list.Remove(collision.gameObject);
+                Destroy(collision.gameObject);
                 MobSpawn.Instance.spawnCount++;
             }
         }
@@ -68,9 +68,10 @@ public class Bot : Animal {
 
     IEnumerator Gas()
     {
-        transform.parent.GetComponent<botMove>().speed -= transform.parent.GetComponent<botMove>().speed * 0.3f;
+        float minusSpeed = speed * 0.3f;
+        speed -= minusSpeed;
         yield return new WaitForSeconds(5.0f);
-        transform.parent.GetComponent<botMove>().speed = speed;
+        speed += minusSpeed;
         yield return null;
     }
 }

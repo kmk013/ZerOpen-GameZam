@@ -9,7 +9,7 @@ public class Animal : MonoBehaviour {
 
     public void ScalingBot()
     {
-        transform.parent.transform.localScale = new Vector3(size * 0.75f, size * 0.75f, size * 0.75f);
+        transform.localScale = new Vector3(size * 2f, size * 2f, size * 2f);
     }
 
     public void ScalingPlayer()

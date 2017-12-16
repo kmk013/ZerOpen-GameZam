@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : SingleTon<GameManager>{
 
+    public List<GameObject> obj_list;
     public AudioSource gasSound;
     public AudioSource needleSound;
     public AudioSource runSound;

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212715075998689196}
   - component: {fileID: 114361317816403270}
   - component: {fileID: 60492640048661010}
-  - component: {fileID: 58794925423761782}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -37,27 +36,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401582151680488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.5, y: -34.2, z: 0}
+  m_LocalPosition: {x: -1777, y: -1882, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58794925423761782
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1401582151680488}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!60 &60492640048661010
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -74,7 +58,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.71, y: 0.43}
+    oldSize: {x: 35.5, y: 21.5}
     newSize: {x: 0.71, y: 0.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -82,22 +66,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.25906524, y: 0.1588089}
-      - {x: 0.05745392, y: 0.10664673}
-      - {x: -0.0003845215, y: 0.21932068}
-      - {x: -0.029614259, y: 0.16961364}
-      - {x: -0.059614565, y: 0.10664673}
-      - {x: -0.28932342, y: 0.18041992}
-      - {x: -0.355, y: 0.21499999}
-      - {x: -0.32906494, y: 0.07635498}
-      - {x: -0.27906647, y: 0.038772583}
-      - {x: -0.054486085, y: -0.051226806}
-      - {x: -0.10815888, y: -0.17897645}
-      - {x: 0.0007293701, y: -0.22020416}
-      - {x: 0.1037735, y: -0.1941803}
-      - {x: 0.05794983, y: -0.054244995}
-      - {x: 0.31825945, y: 0.056904603}
-      - {x: 0.355, y: 0.21499999}
+    - - {x: 14.25, y: 10.75}
+      - {x: 5.25, y: 8.25}
+      - {x: 2.25, y: 10.75}
+      - {x: -3.75, y: 10.75}
+      - {x: -5.25, y: 8.25}
+      - {x: -14.25, y: 10.75}
+      - {x: -17.75, y: 10.75}
+      - {x: -17.75, y: 4.25}
+      - {x: -15.25, y: 0.75}
+      - {x: -5.75, y: -3.75}
+      - {x: -7.75, y: -10.25}
+      - {x: -7.25, y: -10.75}
+      - {x: 6.75, y: -10.75}
+      - {x: 8.25, y: -10.25}
+      - {x: 17.75, y: 4.25}
+      - {x: 17.75, y: 10.75}
 --- !u!114 &114361317816403270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objs_mob: []
+  overwrite: {fileID: 0}
   target: {fileID: 0}
   speed: 5
 --- !u!212 &212715075998689196

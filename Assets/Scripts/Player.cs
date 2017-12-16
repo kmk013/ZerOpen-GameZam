@@ -31,7 +31,7 @@ public class Player : Animal {
         needleImage = GameObject.Find("NeedleButton").GetComponent<Image>();
         runImage = GameObject.Find("RunButton").GetComponent<Image>();
 
-        Hunter.instance.objs_mob.Add(this.gameObject);
+        GameManager.Instance.obj_list.Add(this.gameObject);
     }
 
     private void Update()
@@ -156,8 +156,8 @@ public class Player : Animal {
     {
         if (collider.gameObject.tag == "Mob" && collider.gameObject.GetComponent<Animal>().size < size)
         {
-            Hunter.instance.objs_mob.Remove(collider.gameObject);
-            Destroy(collider.gameObject.transform.parent.gameObject);
+            GameManager.Instance.obj_list.Remove(collider.gameObject);
+            Destroy(collider.gameObject);
             MobSpawn.Instance.spawnCount++;
 
             saturn += ((float)collider.gameObject.GetComponent<Animal>().size / (float)size) * 100;
